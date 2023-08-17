@@ -5,9 +5,7 @@ public interface AbstractQueue<E> extends Iterable<E> {
 
     E dequeue();
 
-    void offer(E element);
-    E poll();
-    E peek();
+
     int size();
     boolean isEmpty();
 }

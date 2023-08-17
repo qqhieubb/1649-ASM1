@@ -79,21 +79,8 @@ public class Queue<E> implements AbstractQueue<E> {
         return element;
     }
 
-    @Override
-    public void offer(E element) {
 
-    }
 
-    @Override
-    public E poll() {
-        return null;
-    }
-
-    @Override
-    public E peek() {
-        ensureNonEmpty();
-        return this.head.element;
-    }
 
     @Override
     public boolean isEmpty() {

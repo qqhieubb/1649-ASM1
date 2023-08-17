@@ -9,9 +9,6 @@ public class Stack<E> implements AbstractStack<E> {
     private Node<E> top;
     private int size;
 
-
-
-
     private static class Node<E> {
         private E element;
         private Node<E> next;
@@ -34,54 +31,13 @@ public class Stack<E> implements AbstractStack<E> {
         this.size++;
     }
 
-    @Override
-    public E pop() {
-        if (isEmpty()) {
-            throw new NoSuchElementException("Stack is empty");
-        }
-
-        E element = this.top.element;
-        this.top = this.top.next;
-        this.size--;
-
-        return element;
-    }
-
-    @Override
-    public E peek() {
-        if (isEmpty()) {
-            throw new NoSuchElementException("Stack is empty");
-        }
-
-        return this.top.element;
-    }
-
-    @Override
-    public int size() {
-        return this.size;
-    }
 
     @Override
     public boolean isEmpty() {
         return this.size == 0;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Stack [");
-        Node<E> current = top;
-        while (current != null) {
-            sb.append(current.element);
-            if (current.next != null) {
-                sb.append(", ");
-            }
-            current = current.next;
-        }
-        sb.append("]");
-        return sb.toString();
-    }
-    @Nonnull
+     @Nonnull
     @Override
     public Iterator<E> iterator() {
         return new Iterator<E>() {

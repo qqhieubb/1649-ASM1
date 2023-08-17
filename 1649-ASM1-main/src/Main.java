@@ -3,7 +3,6 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.InputMismatchException;
-import java.util.NoSuchElementException;
 import java.util.Scanner;
 import implementations.Queue;
 import implementations.Stack;
@@ -14,8 +13,8 @@ public class Main {
         Stack<String> messageStack = new Stack<>();
 
         Scanner scanner = new Scanner(System.in);
-
-        while (true) {
+        Integer choice = 0;
+        while (choice != 6) {
             System.out.println("╔══════════════════════════╗");
             System.out.println("║           MENU           ║");
             System.out.println("╟──────────────────────────╢");
@@ -30,10 +29,11 @@ public class Main {
             System.out.println("║   6. Exit                ║");
             System.out.println("╚══════════════════════════╝");
             System.out.print("Enter your choice: ");
-
+            choice = scanner.nextInt();
+            scanner.nextLine(); // Consume the newline character
             try {
-                int choice = scanner.nextInt();
-                scanner.nextLine(); // Consume the newline character
+
+
 
                 switch (choice) {
                     case 1:
