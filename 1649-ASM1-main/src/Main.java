@@ -13,6 +13,7 @@ public class Main {
         Stack<String> messageStack = new Stack<>();
 
         Scanner scanner = new Scanner(System.in);
+
         Integer choice = 0;
         while (choice != 6) {
             System.out.println("╔══════════════════════════╗");
@@ -46,43 +47,51 @@ public class Main {
                             break;
                         }
 
-                        Instant startQueueTime = Instant.now();
+                        long startTime = System.nanoTime();
                         for (int i = 0; i < numMessages; i++) {
                             System.out.print("Compose message " + (i + 1) + ": ");
                             String message = scanner.nextLine();
                             messageQueue.enqueue(message);
                         }
-                        Instant endQueueTime = Instant.now();
-                        Duration queueDuration = Duration.between(startQueueTime, endQueueTime);
-                        System.out.println("Messages composed and saved to Queue in " + queueDuration.toMillis() + " milliseconds.");
+                        long endTime = System.nanoTime(); // Lưu thời điểm kết thúc thực hiện phương thức
+                        long elapsedTime = endTime - startTime; // Tính thời gian thực hiện trong nanoseconds
+
+                        double milliseconds = (double) elapsedTime / 1000000; // Chuyển đổi sang milliseconds
+
+                        System.out.println("Messages composed and saved to Queue in " + milliseconds + " milliseconds.");
 
                         break;
+
 
                     case 2:
                         if (messageQueue.isEmpty()) {
                             System.out.println("No draft messages to send.");
                             break;
                         }
-
+                        long startTime2 = System.nanoTime();
                         while (!messageQueue.isEmpty()) {
                             String sentMessage = messageQueue.dequeue();
-                            Instant startStackTime = Instant.now();
-                            String formattedTime = getCurrentTime();
-                            messageStack.push(formattedTime + ": " + sentMessage);
-                            Instant endStackTime = Instant.now();
-                            Duration stackDuration = Duration.between(startStackTime, endStackTime);
-                            System.out.println("Message sent: " + sentMessage + " (" + stackDuration.toMillis() + " milliseconds)");
+                            messageStack.push(sentMessage);
 
-                            Thread.sleep(1000); // Add a delay of 1 second
+                            System.out.println("Message sent: " + sentMessage);
+
+//                            Thread.sleep(1000); // Add a delay of 1 second
                         }
+                        long endTime2 = System.nanoTime(); // Lưu thời điểm kết thúc thực hiện phương thức
+                        long elapsedTime2 = endTime2 - startTime2; // Tính thời gian thực hiện trong nanoseconds
+
+                        double milliseconds2 = (double) elapsedTime2 / 1000000; // Chuyển đổi sang milliseconds
+
+                        System.out.println("Messages have sent in " + milliseconds2 + " milliseconds.");
                         break;
+
 
                     case 3:
                         if (messageQueue.isEmpty()) {
                             System.out.println("No draft messages to delete.");
                             break;
                         }
-
+                        long startTime3 = System.nanoTime();
                         System.out.println("Draft messages:");
                         int index = 1;
                         for (String draftMessage : messageQueue) {
@@ -104,7 +113,14 @@ public class Main {
                         } catch (InputMismatchException e) {
                             System.out.println("Invalid input. Please enter a valid index.");
                         }
+
+                        long endTime3 = System.nanoTime(); // Lưu thời điểm kết thúc thực hiện phương thức
+                        long elapsedTime3 = endTime3 - startTime3; // Tính thời gian thực hiện trong nanoseconds
+
+                        double milliseconds3 = (double) elapsedTime3 / 1000000; // Chuyển đổi sang milliseconds
+                        System.out.println("Method execution time: " + milliseconds3 + " milliseconds");
                         break;
+
 
                     case 5:
                         if (messageStack.isEmpty()) {
